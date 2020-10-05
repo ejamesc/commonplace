@@ -6,17 +6,18 @@
       <section class='post-page-content--feature'>
       {{ content }}
       </section>
+      <section class='post-page__date_info'>
+      Originally published <time class='' datetime="{{date published_at format='DD MMMM YYYY'}}">{{date published_at format="DD MMMM YYYY"}}, last updated <time class='' datetime="{{date updated_at format='DD MMMM YYYY'}}">{{date updated_at format="DD MMMM YYYY"}}</time>.
+      </section>
     </div>
   <div class='small-12 medium-8 medium-offset-2 end columns'>
     {{> sidebar}}
   </div>
 </div>
 <div class='row post-page__bottom-meta'>
-  {{#if @labs.subscribers}}
   <div class='small-12 medium-8 medium-offset-2 columns subscribe-box'>
     {{> subscribebox}}
   </div>
-  {{/if}}
   {{#is "post"}}
   <div class='small-12 medium-8 medium-offset-2 end columns'>
     <div class='row small-uncollapse medium-collapse'>

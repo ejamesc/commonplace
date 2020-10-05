@@ -6,11 +6,14 @@
       <section class='post-page-header'>
       <span class='post-page-header__tag-bar'>{{tags separator=", "}}</span>
       <h1 class="post-page-header__title">{{title}}</h1>
-      <div class='post-page-header__metadata-bar'>{{t "By"}} {{author}}</div>
+      <div class='post-page-header__metadata-bar'>{{t "By"}} {{authors}}</div>
       {{#if feature_image}}<img src='{{img_url feature_image}}' alt='{{t "Feature image for"}} {{title}}'/>{{/if}}
       </section>
       <section class='post-page-content'>
       {{ content }}
+      </section>
+      <section class='post-page__date_info'>
+      Originally published <time class='' datetime="{{date published_at format='DD MMMM YYYY'}}">{{date published_at format="DD MMMM YYYY"}}, last updated <time class='' datetime="{{date updated_at format='DD MMMM YYYY'}}">{{date updated_at format="DD MMMM YYYY"}}</time>.
       </section>
     </div>
   <div class='small-12 medium-8 medium-offset-2 large-3 large-offset-1 end columns'>
@@ -18,12 +21,13 @@
   </div>
 </div>
 <div class='row post-page__bottom-meta'>
-  {{#if @labs.subscribers}}
-  <div class='small-12 medium-8 medium-offset-2 large-4 large-offset-1 large-push-7 columns subscribe-box'>
-    {{> subscribebox}}
+  <div class='small-12 medium-8 medium-offset-2 large-4 large-offset-1 large-push-7 columns paddingless'>
+    <div class='subscribe-box'>
+      {{> subscribebox}} 
+    </div>
+    <div>&nbsp;&nbsp;</div>
   </div>
-  {{/if}}
-  <div class='small-12 medium-8 medium-offset-2 large-6 {{#if @labs.subscribers}}large-pull-5{{/if}} large-offset-1 end columns'>
+  <div class='small-12 medium-8 medium-offset-2 large-6 large-pull-5 large-offset-1 end columns'>
     <div class='row small-uncollapse medium-collapse large-collapse'>
       {{#if primary_tag}}
         {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{comment_id}}" limit="3" as |related_posts|}}

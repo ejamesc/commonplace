@@ -5,7 +5,36 @@
 // @import '~foundation-sites/scss/motioncd -ui';
 @include foundation-everything(false); // false is to turn off the flexbox grid, and use the old grid
 
-@font-face {font-family: 'Calluna';src: url('../fonts/Calluna.eot');src: url('../fonts/Calluna.eot?#iefix') format('embedded-opentype'),url('../fonts/Calluna.woff2') format('woff2'),url('../fonts/Calluna.woff') format('woff'),url('../fonts/Calluna.ttf') format('truetype');}
+@font-face {
+  font-family: 'Calluna';
+    src: url('../fonts/Calluna.eot');
+    src: url('../fonts/Calluna.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Calluna.woff2') format('woff2'),
+         url('../fonts/Calluna.woff') format('woff'),
+         url('../fonts/Calluna.ttf') format('truetype'); 
+  font-weight: normal; 
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Calluna';
+    src: url('../fonts/Calluna-It-webfont.eot');
+    src: url('../fonts/Calluna-It-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Calluna-It-webfont.woff2') format('woff2'),
+         url('../fonts/Calluna-It-webfont.woff') format('woff'),
+         url('../fonts/Calluna-It-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+  font-family: 'Calluna';
+    src: url('../fonts/Calluna-Bold-webfont.eot');
+    src: url('../fonts/Calluna-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Calluna-Bold-webfont.woff2') format('woff2'),
+         url('../fonts/Calluna-Bold-webfont.woff') format('woff'),
+         url('../fonts/Calluna-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
 @font-face {font-family: 'Lato';src: url('../fonts/Lato.eot');src: url('../fonts/Lato.eot?#iefix') format('embedded-opentype'),url('../fonts/Lato.woff2') format('woff2'),url('../fonts/Lato.woff') format('woff'),url('../fonts/Lato.ttf') format('truetype');}
 
 // Variables
@@ -18,6 +47,8 @@ $fadedmagenta: #edd6e5;
 $deeppurple: #5D2AB2;
 $deeperpurple: #472089;
 $superdarkpurple: #3c1053;
+$error: #FFDFDF;
+$success: #98c22e;
 
 $gradient: linear-gradient(to bottom right,#61045F,#753a88);
 $footergradient: linear-gradient(to bottom left,$yellowbg,$fadedmagenta);
@@ -272,9 +303,14 @@ h1, h2, h3, h4, h5 {
 }
 
 // Subscribe box styles
+.paddingless {
+  padding: 0;
+}
 .subscribe-box {
   background-color: $fadedpurple;
   padding-top: 0.8rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
 }
@@ -387,6 +423,110 @@ h1, h2, h3, h4, h5 {
   font-size: 0.8rem;
   margin-bottom: 0.8rem;
 }
+@mixin kg_bookmark_styles {
+  .kg-bookmark-card {
+    width: 100%;
+    position: relative;
+  }
+
+  .kg-bookmark-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    color: currentColor;
+    font-family: inherit;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .kg-bookmark-container:hover {
+    text-decoration: none;
+  }
+
+  .kg-bookmark-content {
+    flex-basis: 0;
+    flex-grow: 999;
+    padding: 20px;
+    order: 1;
+  }
+
+  .kg-bookmark-title {
+    font-weight: 600;
+  }
+
+  .kg-bookmark-metadata,
+  .kg-bookmark-description {
+    margin-top: .5em;
+  }
+
+  .kg-bookmark-metadata {
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kg-bookmark-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .kg-bookmark-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: text-bottom;
+    margin-right: .5em;
+    margin-bottom: .05em;
+  }
+
+  .kg-bookmark-thumbnail {
+    display: flex;
+    flex-basis: 24rem;
+    flex-grow: 1;
+  }
+
+  .kg-bookmark-thumbnail img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+    object-fit: cover;
+  }
+
+  .kg-bookmark-author {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .kg-bookmark-publisher::before {
+    content: "•";
+    margin: 0 .5em;
+  }
+}
+@mixin kg_gallery_styles {
+  .kg-gallery-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1040px;
+    width: 100vw;
+  }
+
+  .kg-gallery-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .kg-gallery-image img {
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
 .post-page-content {
   @include breakpoint(medium up) {
     h1, h2, h3, h4, h5, h6 { margin-bottom: 0.9rem; }
@@ -399,6 +539,8 @@ h1, h2, h3, h4, h5 {
   }
   a { border-bottom: 1px dotted map-get($foundation-palette, primary); }
   img { margin-bottom: 1.2rem; }
+  @include kg_bookmark_styles;
+  @include kg_gallery_styles;
 }
 .post-page-content--feature {
   margin-bottom: 3rem;
@@ -429,6 +571,8 @@ h1, h2, h3, h4, h5 {
   }
   a { border-bottom: 1px dotted map-get($foundation-palette, primary); }
   img { margin-bottom: 1.2rem; }
+  @include kg_bookmark_styles;
+  @include kg_gallery_styles;
 }
 // Full width images
 .post-page-content img[src$="#full"], .post-page-content figure.kg-width-full img { // Hack for full width images
@@ -479,15 +623,16 @@ h1, h2, h3, h4, h5 {
   }
 }
 .post-page-content--feature figure.kg-width-wide img {
-  @include breakpoint(large up) {
-    max-width: rem-calc(650);
-    left: 22%;
-    transform: translateX(-25%);
-  }
-  @include breakpoint(medium only) {
+  @include breakpoint(medium up) {
     max-width: 80vw;
-    margin-left: calc(70% - 50vw);
+    margin-left: calc(70% - 52vw);
   }
+}
+.post-page__date_info {
+  padding: 2rem 0;
+  color: #666;
+  font-style: italic;
+  font-size: 1.1rem;
 }
 .post-page__bottom-meta {
   @include breakpoint(large up) {
@@ -672,4 +817,83 @@ h1, h2, h3, h4, h5 {
   padding-bottom: 0.4rem;
 }
 
+/*-- Signup and Signin Form Styles
+*/
+form[data-members-form] .button-loader,
+form[data-members-form] .message-success,
+form[data-members-form] .message-error {
+    display: none;
+}
+/*-- Show success message on success --*/
+form[data-members-form].success .message-success {
+    display: block;
+}
+/*-- Show error message on error --*/
+form[data-members-form].error .message-error {
+    display: block;
+}
 
+form[data-members-form].success .message-success,
+form[data-members-form].error .message-error {
+    position: fixed;
+    top: 84px;
+    right: 20px;
+    left: 20px;
+    z-index: 9999;
+    margin: 0 auto;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.5em;
+    font-weight: 500;
+    text-align: center;
+    background: $success;
+   
+    border-radius: 5px;
+}
+form[data-members-form].success .message-success {
+    background: $success;
+}
+form[data-members-form].error .message-error {
+    color: #111;
+    background: #FF725C;
+    box-shadow: $error;
+}
+
+/* Hide button text */
+form[data-members-form] .button-content {
+  display: block;
+  margin: 1em 2em;
+}
+form[data-members-form].loading .button-content {
+    display: inline-block;
+    margin: 0;
+    visibility: hidden;
+}
+/* Show loading spinner */
+form[data-members-form].loading .button-loader {
+    display: inline-block;
+    margin-left: -80px;
+    transform: scale(0.7);
+}
+.button-loader svg path,
+.button-loader svg rect {
+    fill: #fff;
+}
+.lato { font-family: $sanserif; }
+.offer__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.offer__plan-header {
+  font-style: italic;
+}
+.offer__price-header {
+  color: $deeperpurple;
+  text-align: center;
+}
+.offer__monthly-column {
+ border-right: 1px solid #ddd;
+ text-align: right;
+}
+.upper { text-transform: uppercase; }
