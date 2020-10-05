@@ -1,7 +1,7 @@
 {{!< default}}
 {{> header}}
 
-{{#get "posts" filter="tag:-[books]" limit=@config.posts_per_page as |normal_posts|}}
+{{#get "posts" filter="tag:-[podcast,video]" limit=@config.posts_per_page as |normal_posts|}}
 <div class='row'>
   <div class='small-12 medium-8 medium-offset-2 large-6 large-offset-1 columns'>
       {{#foreach normal_posts limit="1"}}
@@ -41,12 +41,12 @@
     </div>
 </div>
 {{!-- CHANGE this filter to filter for the category you'd like --}}
-{{#get "posts" filter="tag:[books]" limit="4" as |books|}}
+{{#get "posts" filter="tag:[podcast,video]" limit="4" as |books|}}
 {{#if books}}
 <div class='row'>
   <div class='small-12 columns'>
     {{!-- CHANGE this url to "/tag/<tagname>" to link to the tag addres --}}
-    <h2 class='home__books-section-heading'><a class="home__books-section-heading__a" href="{{@blog.url}}/tag/books">{{t "Book Summaries"}}</a></h2>
+    <h2 class='home__books-section-heading'><a class="home__books-section-heading__a" href="{{@site.url}}/media">{{t "Book Summaries"}}</a></h2>
   </div>
 </div>
 <div class='row home__books'>
@@ -61,12 +61,10 @@
 {{/if}}
 {{/get}}
 <div class='row post-page__recommendations'>
-  {{#if @labs.subscribers}}
   <div class='small-12 medium-8 medium-offset-2 large-4 large-offset-1 large-push-7 columns subscribe-box'>
     {{> subscribebox}}
   </div>
-  {{/if}}
-  <div class='small-12 medium-8 medium-offset-2 large-6 {{#if @labs.subscribers}}large-pull-5{{/if}} large-offset-1 end columns'>
+  <div class='small-12 medium-8 medium-offset-2 large-6 large-pull-5 large-offset-1 end columns'>
     {{#foreach normal_posts from="4"}}
       <article class="{{post_class}} post">
         <div class='row'>

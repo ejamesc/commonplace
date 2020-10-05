@@ -12,6 +12,26 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Calluna';
+    src: url('../fonts/Calluna-It-webfont.eot');
+    src: url('../fonts/Calluna-It-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Calluna-It-webfont.woff2') format('woff2'),
+         url('../fonts/Calluna-It-webfont.woff') format('woff'),
+         url('../fonts/Calluna-It-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+  font-family: 'Calluna';
+    src: url('../fonts/Calluna-Bold-webfont.eot');
+    src: url('../fonts/Calluna-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Calluna-Bold-webfont.woff2') format('woff2'),
+         url('../fonts/Calluna-Bold-webfont.woff') format('woff'),
+         url('../fonts/Calluna-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
 
 @font-face {
   font-family: 'Lato';
@@ -121,6 +141,17 @@ pre {
     max-height: 150px;
   }
 }
+.btn--hollow {
+  color: get-color(primary);
+  border-color: get-color(primary);
+  border-style: solid !important;
+  background-color: transparent;
+  &:hover, &:active {
+    color: scale-color($button-background, $lightness: -15%);
+    border-color: scale-color($button-background, $lightness: -15%);
+    background-color: transparent;
+  }
+}
 .btn--white--hollow {
   border-color: #fff;
   color: #fff;
@@ -131,17 +162,6 @@ pre {
     background-color: transparent;
   }
   &:visited, &:focus {
-    background-color: transparent;
-  }
-}
-.btn--purple--hollow {
-  color: $deeppurple;
-  border-color: $deeppurple;
-  border-style: solid !important;
-  background-color: transparent;
-  &:hover, &:active {
-    color: $superdarkpurple;
-    border-color: $superdarkpurple;
     background-color: transparent;
   }
 }
@@ -181,13 +201,14 @@ h1, h2, h3, h4, h5 {
 }
 .header__logo__img {
   @include breakpoint(large up) {
-    float: right;
-    padding: 10px 0 0 0;
+    max-width: 153px;
+    float: left;
+    padding: 1.5rem 0 0 0.7rem;
   }
   @include breakpoint(medium down) {
+    max-width: 150px;
     float: center;
-    padding: 5px 0 0 0;
-    height: 120px;
+    padding: 2rem 0 0 0;
   }
 }
 .header__name {
@@ -323,7 +344,7 @@ h1, h2, h3, h4, h5 {
   border-bottom: 1px dotted $medium-gray;
 }
 
-// Subscribe box styles
+// Subscribe box styles (Deprecated)
 .subscribe-box {
   background-color: $fadedpurple;
   padding-top: 0.8rem;
@@ -337,6 +358,15 @@ h1, h2, h3, h4, h5 {
 .subscribe-box__p {
   font-size: 0.9rem;
   line-height: 120%;
+}
+
+// Converkit subscribe box
+.ck-subscribe-box {
+  font-family: $sanserif;
+  h1 {
+    font-family: $sanserif;
+    margin-top: 1rem;
+  }
 }
 
 // Index styles
@@ -439,6 +469,12 @@ h1, h2, h3, h4, h5 {
   font-size: 0.8rem;
   margin-bottom: 0.8rem;
 }
+.post-page-header--guide {
+  @include breakpoint(large up) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
 .post-page-content {
   @include breakpoint(medium up) {
     h1, h2, h3, h4, h5, h6 { margin-bottom: 0.9rem; }
@@ -479,7 +515,7 @@ h1, h2, h3, h4, h5 {
       margin-bottom: 0.5rem;
     }
   }
-  a { border-bottom: 1px dotted map-get($foundation-palette, primary); }
+  a { border-bottom: 1px dotted get-color(primary); }
   img { margin-bottom: 1.2rem; }
 }
 // Full width images
@@ -531,14 +567,9 @@ h1, h2, h3, h4, h5 {
   }
 }
 .post-page-content--feature figure.kg-width-wide img {
-  @include breakpoint(large up) {
-    max-width: rem-calc(650);
-    left: 22%;
-    transform: translateX(-25%);
-  }
-  @include breakpoint(medium only) {
+  @include breakpoint(medium up) {
     max-width: 80vw;
-    margin-left: calc(70% - 50vw);
+    margin-left: calc(70% - 52vw);
   }
 }
 .post-page__bottom-meta {
@@ -602,6 +633,9 @@ h1, h2, h3, h4, h5 {
   @include breakpoint(medium up) {
     margin-left: -10%;
   }
+}
+.course-menu__header {
+  margin-bottom: 1.5rem;
 }
 
 // Pagination
